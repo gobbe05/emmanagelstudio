@@ -19,8 +19,12 @@ export default function Admin({data}) {
     const [loggedin, setLoggedin] = useState(false)
     const [cookie, setCookie] = useCookies(["loggedin"])
 
-    let AvailableBookings = data.AvailableBookings
-    let ConfirmedBookings = data.ConfirmedBookings
+    const [AvailableBookings, setAvailableBookings] = useState(data.AvailableBookings)
+    const [ConfirmedBookings, setConfirmedBookings] = useState(data.ConfirmedBookings)
+    
+    if(data == null) {
+        
+    }
 
     useEffect(() => {
         if(cookie.loggedin == undefined) {
@@ -45,7 +49,7 @@ export default function Admin({data}) {
             newBookingTime: newBookingTime,
             funcMethod: "POST AvailableBooking",
         }
-        const response = await fetch('/api/admin', {
+        const response = await fetch('http://emmanagelstudio.vercel.app/api/admin', {
             method: "POST",
             body: JSON.stringify({dataBody}),
             headers: {
