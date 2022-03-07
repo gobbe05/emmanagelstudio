@@ -61,7 +61,7 @@ export default function Admin({data}) {
             bookingtime: time
         }
         
-        const response = await fetch('/api/admin', {
+        const response = await fetch('http://emmanagelstudio.vercel.app/api/admin', {
             method: "DELETE",
             body: JSON.stringify({dataBody}),
             headers: {
