@@ -1,0 +1,36 @@
+.mainCTR {
+    background-color: #f0c1c1;
+
+}
+.informationCTR {
+    color: white;
+    display: flex;
+    min-height: 60vh;
+    padding: 5%;
+    width: 100%;
+}
+.informationCTR div {
+    width: 50%;
+    height: 100%;
+    text-align: center;
+}
+.informationCTR div div {
+    
+    overflow: hidden;
+}
+.informationCTR div img {
+    width: 30%;
+    border-radius: 50%;
+
+}
+.pictureCTR{
+    border-right: 2.5px solid white;
+}
+
+.textCTR {
+    min-height: 20vh;
+    width: 60%;
+    margin-top: 50px;
+    margin-left: 20%;
+    border-top: 2.5px solid white;
+}

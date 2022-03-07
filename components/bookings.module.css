@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap');
+
+.bookingsCTR {
+    font-family: 'Merriweather', serif;    
+    color:#535252;
+    background-color: #e4dada;
+    min-height: 70vh;
+}
+.bookingidCTR {
+    padding-top: 10%;
+    margin-left: 15vw;
+}
+.bookingsCTR form {
+    width: 70vw;
+    margin-left: 15vw;
+    margin-top: 10%;
+}
+.bookingsCTR form input, .bookingsCTR form select, .bookingsCTR form button {
+    color: black;
+    background-color: white;
+    height: 25px;
+    margin-top: 5px;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+}
+.bookingsCTR form h3 {
+    margin-top: 25px;
+    
+}
+.bookingsCTR button {
+    color: white !important;
+    background-color: #e5b8b8 !important;
+}

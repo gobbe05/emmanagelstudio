@@ -1,0 +1,42 @@
+.galleriCTR {
+    width: 100%;
+}
+
+.galleriCTR .postCTR{
+    background-color: #ffffff;
+    width: 100%;
+}
+.galleriCTR .profileCTR {
+    display: flex;
+    align-items: center;
+    height: 70px;
+}
+.galleriCTR .profileCTR img {
+    height: 50px;
+    width: 50px;
+    margin-left: 10px;
+    margin-top: 0px;
+    border-radius: 25px;
+}
+.galleriCTR .profileCTR a {
+    color: rgb(26, 26, 26);
+    margin-left: 10px;
+}
+.galleriCTR .imageCTR img{
+    width: 100%;
+}
+.galleriCTR .descriptionCTR {
+    height: 20%;
+}
+.galleriCTR .descriptionCTR .likesaveCTR {
+    display: flex;
+    justify-content: space-between;
+}
+.galleriCTR .descriptionCTR img {
+    margin: 18px;
+    height: 36px;
+}
+.galleriCTR .descriptionCTR .commentCTR {
+    margin-left: 18px;
+    padding-bottom: 80px;
+}

@@ -1,0 +1,335 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap');
+
+.headerCTR {
+    font-family: 'Merriweather', serif;    
+    width: 100vw;
+    height: 20vh;
+    color: white;
+    background-color: #f0c1c1;
+}
+.headerCTR img{
+    cursor:pointer;
+}
+.instagramCTR {
+    display: flex;  
+    height: 25%;
+    background-color: #e5b8b8;
+}
+.instagramCTR h5, .instagramCTR .instagram {
+    color: white;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+.instagram {
+    height: 18px;
+}
+.sidemenuSocialsCTR {
+    margin-top: 50%;
+    margin-left: 25px;
+    display: flex;  
+    flex-direction: column;
+}
+.sidemenuSocialsCTR div {
+    display: flex;
+}
+.sidemenuSocialsCTR h5, .sidemenuSocialsCTR .instagram {
+    color: white;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+.instagram {
+    height: 18px;
+}
+.headermainCTR {
+    height: 75%;
+}
+.logoCTR, .logoCTR img{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+.sidemenuCTR {
+    background-color: #f0c1c1;
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 80vw;
+    height: 100vh;
+    transition: .5s;
+}
+.linksCTR {
+    margin-left: 10%;
+    margin-top: 250px;
+}
+.linksCTR h1 {
+    width: 150px;
+    margin-top: 25px;
+    border-bottom: 0px solid white;
+    transition: .5s;
+}
+.linksCTR h1:hover {
+    border-bottom: 4px solid white;
+}
+.close {
+    right: -80vw;
+}
+.galleryCTR {
+    display: none;
+    overflow: hidden;
+    max-height: 50vh;
+    max-width: 100vw;
+}
+.sliderCTR {
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    max-height: 50vh;
+    max-width: 100vw;
+    background-color: #caa3a3;
+}
+.mySlides {     
+    display: none;
+}
+.mySlides img {
+    width: 100%;
+}
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+  }
+  .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+  .prev {
+      left: 0;
+  }
+  .prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+  }
+  .dot {
+    cursor: pointer;
+    height: 10px;
+    width: 10px;
+    margin: 10px 10px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+  }
+  .dotCTR {
+      text-align: center;
+      position: absolute;
+      bottom: 3%;
+      
+  }
+  .active, .dot:hover {
+    background-color: #717171;
+  }
+  .fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 2s;
+    animation-name: fade;
+    animation-duration: 2s;
+  }
+  .hide {
+      display: none ;
+  }
+  .show {
+      display: block !important;
+  }
+  @-webkit-keyframes fade {
+    from {opacity: .7}
+    to {opacity: 1}
+  }
+  
+  @keyframes fade {
+    from {opacity: .7}
+    to {opacity: 1}
+  }
+
+
+.hamburgerCTR {
+    margin-top: 1%;
+    position: absolute;
+    cursor: pointer;
+    right: 30px;
+    top: 11%;
+    width: 40px;
+    transition: .5s;
+}
+.hamburgerCTR:hover {
+    opacity: .8;
+}
+.hamburgertwoCTR {
+    cursor: pointer;
+    position: absolute;
+    left: 30px;
+    top: 11%;
+    width: 40px;
+}
+.hamburgertwoCTR:hover {
+    opacity: .8;
+}
+.hamburgertwoCTR div {
+    border-radius: 5px;
+    background-color: white;
+    margin-top: 5px;
+    width: 40px;
+    height: 7px;
+}
+.crossone {
+    position: relative;
+    top: 12px;
+    transform: rotate(45deg);
+    
+}
+.crosstwo {
+    transform: rotate(-45deg);
+}
+.hamburgerCTR div {
+    border-radius: 5px;
+    background-color: white;
+    margin-top: 5px;
+    width: 30px;
+    height: 4px;
+}
+
+.availableBkingsCTR {
+    text-align: center;
+    font-family: 'Merriweather', serif;
+    min-height: 37.5vh;
+    background-color: #f3d5d5;
+}
+.availableBkingsCTR h1 {
+    padding-top: 25px;
+}
+.availableBkingsCTR div {
+    color: #535252;
+    width: 100%;
+    text-align: center;
+}
+.availableBkingsCTR * {
+    margin: 0;
+}
+.availableBkingsCTR ul {
+    padding-top: 3vw;
+    padding-bottom: 3vw;
+    padding-left: 3vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.availableBkingsCTR ul li {
+    font-size: 14px;
+    margin-top: 2vh;
+    list-style: none;
+    background-color: #e5b8b8;
+    color:#666666;
+    border-radius: 50%;
+    border: 0.5px solid rgba(63, 61, 63, 0.247);
+    margin-left: 1vw;
+    width: 30vw;
+    height: 30vw;
+    text-align: center;
+    transition: .5s;
+}
+.availableBkingsCTR ul h3 {
+    font-family: 'Merriweather', serif;    
+    width: 100vw;
+    text-align: center;
+    background-color: #f3d5d5;
+    padding-top: 10%;
+    padding-bottom: 15%;
+    color: #535252;
+}
+.availableBkingsCTR ul li:hover {
+    background-color: #caa3a3;
+    cursor: pointer;
+}
+
+.availableBkingsCTR ul li:active {
+    background-color: #caa3a3;
+}
+
+.availableBkingsCTR ul li h2{
+    padding-top: 20%;
+}
+
+
+.bookCTR {
+    display: none;
+}
+.viktiginfoCTR {
+    font-family: 'Merriweather', serif;
+    text-align: center;
+    color:#535252;
+    background-color: #f0c1c1;
+    width: 100vw;
+    min-height: 50vh;
+    padding: 5%;
+
+}
+.viktiginfoCTR h2 {
+    padding-top: 5%;
+}
+.viktiginfoCTR p {
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 10%;
+}
+.footerCTR {
+    width: 100vw;
+    height: 10vh;
+    background-color: #e5b8b8;
+}
+
+@media only screen and (min-width: 728px) {
+    .availableBkingsCTR ul li {
+        width: 20vw;
+        height: 20vw;
+        margin-left: 2.5vw;
+    }
+    .galleryCTR {
+        max-height: 65vh;
+    }
+}
+
+@media only screen and (min-width: 1280px) {
+    .availableBkingsCTR ul {
+        padding-left: 17.5vw;
+        padding-right: 17.5vw;
+    }
+    .availableBkingsCTR ul li {
+        width: 10vw;
+        height: 10vw;
+    }
+    .galleryCTR {
+        display: flex !important;
+    }
+    .galleryCTR img {
+        width: 33vw;   
+    }
+    .sliderCTR {
+        display: none;
+    }
+    .hamburgerCTR {
+        display: none;
+    }
+}
+
+.pointer {
+    cursor:pointer;
+}

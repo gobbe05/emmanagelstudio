@@ -1,0 +1,15 @@
+.adminCTR {
+    display: flex;
+}
+.bookingsCTR {
+    width: 50vw;
+}
+.bookingsCTR div {
+    margin: 100px;
+}
+.availabletimesCTR {
+    width: 50%;
+}
+.datetimeCTR {
+    height: 25vh;
+}

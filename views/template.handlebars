@@ -1,0 +1,33 @@
+<style>
+
+.header {
+    width: 100%;
+    height: 100px;
+
+    background-color: pink;
+}
+
+</style>
+
+<body style="background: #e5b8b8; color: white;">
+    <div style="text-align:center; padding: 2.5%; text-decoration: underline;">
+        <h1>Emmas Nagelstudio</h1>
+    </div>
+    <div style="margin: 0 10%;">
+        <h2 style="text-align: center;">Tack för din bokning!</h2>
+        <h3>Datum : {{bookingdate}}</h3>
+        <h3>Tid : {{bookingtime}}</h3>
+    </div>
+    <div style="width: 100%; height: 75px; background-color: #e5b8b8;">
+          <div className={styles.socialsCTR}>
+            <div className={styles.instagramCTR}>
+              <img src="/instagram.png" className={styles.instagram}></img>
+              <h5>emma_nagelstudio</h5>
+            </div>
+            <div className={styles.instagramCTR}>
+              <img src="/tiktok.png" className={styles.instagram}></img>
+              <h5>emma_nagelstudio</h5>
+            </div>
+          </div>
+      </div>
+</body>
