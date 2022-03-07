@@ -34,7 +34,7 @@ export default function Tider({data}) {
                 <ul>
               {AvailableBookings.map((element) => {
                       return (
-                        <Link href={"/bokning?" + "time=" + element.time + "&" + "date="+ element.date}>
+                        <Link key={element.date + element.time} href={"/bokning?" + "time=" + element.time + "&" + "date="+ element.date}>
                           <li className={stylestwo.bookingItem}>
                               <div className={stylestwo.bookingCTR}>
                                   <h2>{element.time}</h2>
