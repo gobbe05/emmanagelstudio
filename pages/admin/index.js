@@ -81,7 +81,7 @@ export default function Admin({data}) {
                             let date = element.date
                             let time = element.date.split(".")[1]
                             return (
-                                <li className={styles.bookingItem}>
+                                <li key={date + time} className={styles.bookingItem}>
                                     <div className={styles.bookingCTR}>
                                         <h1>{"Namn : " + element.name}</h1>
                                         <h2>{"Typ : " + element.type}</h2>
@@ -113,7 +113,7 @@ export default function Admin({data}) {
                     <ul>
                     {AvailableBookings.map((element) => {
                             return (
-                                <li className={styles.bookingItem}>
+                                <li key={element.date + element.time} className={styles.bookingItem}>
                                     <div className={styles.bookingCTR}>
                                         <h3>{element.date}</h3>
                                         <h2>{element.time}</h2>
