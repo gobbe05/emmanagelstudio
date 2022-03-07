@@ -4,12 +4,12 @@ import Router from 'next/router'
 import {useCookies} from 'react-cookie'
 
 export async function getStaticProps(context) {
-        const response = await fetch('http://emmanagelstudio3.vercel.app/api/admin', {
+        const response = await fetch('http://emmanagelstudio.vercel.app/api/admin', {
         method: "GET",
     })
 
     const data = await response.json()
-    await fetch('http://emmanagelstudio3.vercel.app/api/checkbookings')
+    await fetch('http://emmanagelstudio.vercel.app/api/checkbookings')
     return {props: {data: data}}
 }
 
@@ -45,7 +45,7 @@ export default function Admin({data}) {
             newBookingTime: newBookingTime,
             funcMethod: "POST AvailableBooking",
         }
-        const response = await fetch('http://emmanagelstudio3.vercel.app/api/admin', {
+        const response = await fetch('http://emmanagelstudio.vercel.app/api/admin', {
             method: "POST",
             body: JSON.stringify({dataBody}),
             headers: {
@@ -61,7 +61,7 @@ export default function Admin({data}) {
             bookingtime: time
         }
         
-        const response = await fetch('http://emmanagelstudio3.vercel.app/api/admin', {
+        const response = await fetch('http://emmanagelstudio.vercel.app/api/admin', {
             method: "DELETE",
             body: JSON.stringify({dataBody}),
             headers: {
