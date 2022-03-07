@@ -1,4 +1,4 @@
-import styles from '../../components/admin.module.css'
+import styles from '/components/admin.module.css'
 import {useState, useEffect} from "react"
 import Router from 'next/router'
 import {useCookies} from 'react-cookie'
