@@ -4,7 +4,7 @@ import Router from 'next/router'
 import {useCookies} from 'react-cookie'
 
 export async function getStaticProps(context) {
-        const response = await fetch('/api/admin', {
+        const response = await fetch('http://emmanagelstudio.vercel.app/api/admin', {
         method: "GET",
     })
 
