@@ -6,9 +6,9 @@ import Link from "next/link"
 
 export async function getStaticProps(context) {
   const [dataRes, informationRes, picturesRes] = await Promise.all([
-    fetch('http://localhost:3000/api/admin'),
-    fetch('http://localhost:3000/api/fetchinformation'),
-    fetch('http://localhost:3000/api/getimages'),])
+    fetch('http://emmanagelstudio.vercel.app/api/admin'),
+    fetch('http://emmanagelstudio.vercel.app/api/fetchinformation'),
+    fetch('http://emmanagelstudio.vercel.app/api/getimages'),])
 
     const [data, information, pictures] = await Promise.all([
       dataRes.json(),
@@ -125,7 +125,7 @@ export default function Home({data, information, pictures}) {
           pictures.map((item) => {
             refId++;
             return (
-              <div ref={refArr[refId-1] } className={`${styles.mySlides} ${styles.fade} `}>
+              <div key={item.image} ref={refArr[refId-1] } className={`${styles.mySlides} ${styles.fade} `}>
                 <img src={item.image}></img>
               </div>
             )

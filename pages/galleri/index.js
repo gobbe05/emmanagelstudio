@@ -25,7 +25,7 @@ export default function Galleri({data}) {
                 arrayOfPosts.map((post) => {
                     console.log(post)
                     return (
-                        <div className={styles.postCTR}>
+                        <div key={post.title} className={styles.postCTR}>
                             <div className={styles.profileCTR}>
                                 <img src={post.image}></img>
                                 <a href="https://www.instagram.com/emma_nagelstudio/"><b>emma_nagelstudio</b></a>

@@ -4,12 +4,12 @@ import Router from 'next/router'
 import {useCookies} from 'react-cookie'
 
 export async function getStaticProps(context) {
-        const response = await fetch('http://localhost:3000/api/admin', {
+        const response = await fetch('http://emmanagelstudio.vercel.app/api/admin', {
         method: "GET",
     })
 
     const data = await response.json()
-    await fetch('http://localhost:3000/api/checkbookings')
+    await fetch('http://emmanagelstudio.vercel.app/api/checkbookings')
     return {props: {data: data}}
 }
 
@@ -45,7 +45,7 @@ export default function Admin({data}) {
             newBookingTime: newBookingTime,
             funcMethod: "POST AvailableBooking",
         }
-        const response = await fetch('/api/admin', {
+        const response = await fetch('http://emmanagelstudio.vercel.app/api/admin', {
             method: "POST",
             body: JSON.stringify({dataBody}),
             headers: {
@@ -61,7 +61,7 @@ export default function Admin({data}) {
             bookingtime: time
         }
         
-        const response = await fetch('/api/admin', {
+        const response = await fetch('http://emmanagelstudio.vercel.app/api/admin', {
             method: "DELETE",
             body: JSON.stringify({dataBody}),
             headers: {
@@ -81,7 +81,7 @@ export default function Admin({data}) {
                             let date = element.date
                             let time = element.date.split(".")[1]
                             return (
-                                <li className={styles.bookingItem}>
+                                <li key={date + time} className={styles.bookingItem}>
                                     <div className={styles.bookingCTR}>
                                         <h1>{"Namn : " + element.name}</h1>
                                         <h2>{"Typ : " + element.type}</h2>
@@ -113,7 +113,7 @@ export default function Admin({data}) {
                     <ul>
                     {AvailableBookings.map((element) => {
                             return (
-                                <li className={styles.bookingItem}>
+                                <li key={element.date + element.time} className={styles.bookingItem}>
                                     <div className={styles.bookingCTR}>
                                         <h3>{element.date}</h3>
                                         <h2>{element.time}</h2>

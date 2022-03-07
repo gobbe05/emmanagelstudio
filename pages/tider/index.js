@@ -3,7 +3,7 @@ import stylestwo from '../../components/home.module.css'
 import Link from 'next/link'
 
 export async function getStaticProps(context) {
-    const response = await fetch('http://localhost:3000/api/admin', {
+    const response = await fetch('http://emmanagelstudio.vercel.app/api/admin', {
     method: "GET",
   })
   
@@ -34,7 +34,7 @@ export default function Tider({data}) {
                 <ul>
               {AvailableBookings.map((element) => {
                       return (
-                        <Link href={"/bokning?" + "time=" + element.time + "&" + "date="+ element.date}>
+                        <Link key={element.date + element.time} href={"/bokning?" + "time=" + element.time + "&" + "date="+ element.date}>
                           <li className={stylestwo.bookingItem}>
                               <div className={stylestwo.bookingCTR}>
                                   <h2>{element.time}</h2>
