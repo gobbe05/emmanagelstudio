@@ -4,7 +4,7 @@ import Router from 'next/router'
 import {useCookies} from 'react-cookie'
 
 export async function getStaticProps(context) {
-        const response = await fetch('http://localhost:3000/api/admin', {
+        const response = await fetch('/api/admin', {
         method: "GET",
     })
 
