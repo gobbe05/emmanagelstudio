@@ -19,8 +19,8 @@ export default function Admin({data}) {
     const [loggedin, setLoggedin] = useState(false)
     const [cookie, setCookie] = useCookies(["loggedin"])
 
-    const [AvailableBookings, setAvailableBookings] = useState(data.AvailableBookings)
-    const [ConfirmedBookings, setConfirmedBookings] = useState(data.ConfirmedBookings)
+    let AvailableBookings = data.AvailableBookings
+    let ConfirmedBookings = data.ConfirmedBookings
     
     if(data == null) {
         
