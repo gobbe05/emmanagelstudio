@@ -125,7 +125,7 @@ export default function Home({data, information, pictures}) {
           pictures.map((item) => {
             refId++;
             return (
-              <div ref={refArr[refId-1] } className={`${styles.mySlides} ${styles.fade} `}>
+              <div key={item.image} ref={refArr[refId-1] } className={`${styles.mySlides} ${styles.fade} `}>
                 <img src={item.image}></img>
               </div>
             )
