@@ -21,10 +21,6 @@ export default function Admin({data}) {
 
     let AvailableBookings = data.AvailableBookings
     let ConfirmedBookings = data.ConfirmedBookings
-    
-    if(data == null) {
-        
-    }
 
     useEffect(() => {
         if(cookie.loggedin == undefined) {
