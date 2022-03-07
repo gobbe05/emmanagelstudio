@@ -9,7 +9,7 @@ export async function getStaticProps(context) {
     })
 
     const data = await response.json()
-    await fetch('http://localhost:3000/api/checkbookings')
+    await fetch('http://emmanagelstudio.vercel.app/api/checkbookings')
     return {props: {data: data}}
 }
 
