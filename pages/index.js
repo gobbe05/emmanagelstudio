@@ -100,16 +100,14 @@ catch(error) {
         }  
     })
 
-    let data = dataRes
     let information = informationRes
     let pictures = picturesRes
     
-    if(data == undefined) {data = null}
     if(information == undefined) {information = null}
     if(pictures == undefined) {pictures = []}
   
-  /*Check bookings
-  console.log("Checking bookings!")
+  //Check bookings
+        console.log("Checking bookings!")
         let AvailableBookings = await AvailableBooking.find({})
         let ConfirmedBookings = await ConfirmedBooking.find({})
 
@@ -138,9 +136,9 @@ catch(error) {
         }
 
         console.log("From, admin-get : Fetched Available bookings")
-        data = {AvailableBookings: JSON.parse(JSON.stringify(AvailableBookings), ConfirmedBookings: JSON.parse(JSON.stringify(ConfirmedBookings))}*/
+        data = {AvailableBookings: JSON.parse(JSON.stringify(AvailableBookings), ConfirmedBookings: JSON.parse(JSON.stringify(ConfirmedBookings))}
 
-    return {props: {data: data, information: information, pictures: pictures}}
+    return {props: {data: dataRes, information: information, pictures: pictures}}
 }
 
 export default function Home({data, information, pictures}) {
