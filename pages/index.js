@@ -111,7 +111,7 @@ catch(error) {
         let AvailableBookings = await AvailableBooking.find({})
         let ConfirmedBookings = await ConfirmedBooking.find({})
 
-        for (let i=0; i < AvailableBooking.length; i++) {
+        for (let i=0; i < AvailableBookings.length; i++) {
             try{
                 if(Date.parse(AvailableBookings[i].date)-Date.parse(new Date()) <= 0) {
                     console.log("Trying to delete date")
