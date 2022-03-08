@@ -87,12 +87,11 @@ catch(error) {
                 }
 
             })
-            console.log("Done")
         }
         else {
             console.log("No files found!")
         }  
-      console.log(imageArray)
+      console.log("Done : " + imageArray)
     })
 
     let information = informationRes
