@@ -50,8 +50,6 @@ catch(error) {
     const scopes = [
         "https://www.googleapis.com/auth/drive"
     ]
-
-    const credentials = require('../../Credentials.json')
     const auth = new google.auth.JWT(
         credentials.client_email, null,
         credentials.private_key, scopes
