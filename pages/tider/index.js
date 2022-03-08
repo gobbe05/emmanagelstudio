@@ -1,6 +1,10 @@
 import styles from '../../components/times.module.css'
 import stylestwo from '../../components/home.module.css'
+import dbConnect from "../../utils/dbConnect"
+import AvailableBooking from "../../models/AvailableBooking"
+import ConfirmedBooking from "../../models/ConfirmedBooking"
 import Link from 'next/link'
+dbConnect()
 
 export async function getStaticProps(context) {
     let response = undefined
