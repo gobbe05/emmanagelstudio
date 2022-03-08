@@ -136,6 +136,7 @@ catch(error) {
 
 export default function Home({data, information, pictures}) {
     console.log("pictures array : " + pictures)
+    pictures = JSON.parse(pictures)
     let AvailableBookings = data.AvailableBookings
     let sortedBookings = AvailableBookings.sort((a,b) => {
     try {
