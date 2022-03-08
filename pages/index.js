@@ -81,6 +81,7 @@ catch(error) {
                 let object = {image: image, title: title, comment: comment}
                 if(name.split(".")[1]) {
                     imageArray.push(object)
+                    console.log("addijng")
                 }
                 else {
                     console.log("File is not an image, skipping!")
