@@ -1,17 +1,17 @@
-import Head from 'next/head'
-import React, { useEffect, useState } from 'react'
-import {useCookies} from 'react-cookie'
-import styles from '../components/home.module.css'
-import Link from "next/link"
-import dbConnect from "../utils/dbConnect"
-import AvailableBooking from "../models/AvailableBooking"
-import ConfirmedBooking from "../models/ConfirmedBooking"
-import { collection } from "../models/AvailableBooking"
-const credentials = require('../Credentials.json')
-import Images from '../models/Images'
-var mongoose = require("mongoose")
-require('dotenv').config()
-const {google} = require("googleapis")
+import Head from 'next/head';
+import React, { useEffect, useState } from 'react';
+import {useCookies} from 'react-cookie';
+import styles from '../components/home.module.css';
+import Link from "next/link";
+import dbConnect from "../utils/dbConnect";
+import AvailableBooking from "../models/AvailableBooking";
+import ConfirmedBooking from "../models/ConfirmedBooking";
+import { collection } from "../models/AvailableBooking";
+const credentials = require('../Credentials.json');
+import Images from '../models/Images';
+var mongoose = require("mongoose");
+require('dotenv').config();
+const {google} = require("googleapis");
 
 dbConnect();
 
@@ -39,14 +39,14 @@ catch(error) {
   //Fetchinformation call
   
   try {
-            var connection = mongoose.connection
-            let object = await connection.db.collection('information').findOne({})
+  var connection = mongoose.connection
+  let object = await connection.db.collection('information').findOne({})
 
-            information = {text: object.text}
-        }
-        catch {
-            informationRes = {}
-        }
+  information = {text: object.text}
+  }
+  catch {
+  informationRes = {}
+  }
   
   //Getimages call
   
