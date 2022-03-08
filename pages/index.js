@@ -91,7 +91,7 @@ catch(error) {
         else {
             console.log("No files found!")
         }  
-      console.log("Done : " + imageArray)
+      console.log("Done : " + JSON.stringify(imageArray))
     })
 
     let information = informationRes
