@@ -136,7 +136,7 @@ catch(error) {
         }
 
         console.log("From, admin-get : Fetched Available bookings")
-        data = {AvailableBookings: JSON.parse(JSON.stringify(AvailableBookings), ConfirmedBookings: JSON.parse(JSON.stringify(ConfirmedBookings))}
+        dataRes = {AvailableBookings: JSON.parse(JSON.stringify(AvailableBookings)), ConfirmedBookings: JSON.parse(JSON.stringify(ConfirmedBookings))}
 
     return {props: {data: dataRes, information: information, pictures: pictures}}
 }
