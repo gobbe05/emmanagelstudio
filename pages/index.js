@@ -92,6 +92,7 @@ catch(error) {
             console.log("No files found!")
         }  
       console.log("Done : " + JSON.stringify(imageArray))
+      console.log("test")
       imageArray = JSON.stringify(imageArraY)
     })
 
