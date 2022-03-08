@@ -102,6 +102,7 @@ catch(error) {
     })
 
     let data = dataRes
+    console.log(data)
     let information = informationRes
     let pictures = picturesRes
   
