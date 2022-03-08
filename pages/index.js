@@ -91,8 +91,6 @@ catch(error) {
         else {
             console.log("No files found!")
         }  
-      console.log("Done : " + JSON.stringify(imageArray))
-      imageArray = JSON.stringify(imageArray)
     })
 
     let information = informationRes
@@ -131,7 +129,7 @@ catch(error) {
         console.log("From, admin-get : Fetched Available bookings")
         dataRes = {AvailableBookings: JSON.parse(JSON.stringify(AvailableBookings)), ConfirmedBookings: JSON.parse(JSON.stringify(ConfirmedBookings))}
 
-    return {props: {data: dataRes, information: information, pictures: imageArray}}
+    return {props: {data: dataRes, information: information, pictures: JSON.stringify(imageArray)}}
 }
 
 export default function Home({data, information, pictures}) {
