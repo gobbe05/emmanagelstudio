@@ -1,6 +1,6 @@
 import { Mongoose } from "mongoose"
-import dbConnect from "../../../utils/dbConnect"
-import AvailableBooking from "../../../models/AvailableBooking"
+import dbConnect from "../../utils/dbConnect"
+import AvailableBooking from "../../models/AvailableBooking"
 import ConfirmedBooking from "../../models/ConfirmedBooking"
 
 dbConnect()
