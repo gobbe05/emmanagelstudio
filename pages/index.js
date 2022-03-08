@@ -98,7 +98,7 @@ catch(error) {
     })
       if (err) return reject(err)
       resolve(imageArray)
-      }
+      })
     }
     
 
