@@ -7,7 +7,6 @@ import dbConnect from "../utils/dbConnect";
 import AvailableBooking from "../models/AvailableBooking";
 import ConfirmedBooking from "../models/ConfirmedBooking";
 const credentials = require('../Credentials.json');
-import Images from '../models/Images';
 var mongoose = require("mongoose");
 require('dotenv').config();
 const {google} = require("googleapis");
