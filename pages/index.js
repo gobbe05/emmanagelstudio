@@ -51,6 +51,7 @@ catch(error) {
         "https://www.googleapis.com/auth/drive"
     ]
 
+    const credentials = require('../../Credentials.json')
     const auth = new google.auth.JWT(
         credentials.client_email, null,
         credentials.private_key, scopes
@@ -81,14 +82,16 @@ catch(error) {
                 let object = {image: image, title: title, comment: comment}
                 if(name.split(".")[1]) {
                     imageArray.push(object)
-                    console.log("addijng")
                 }
                 else {
                     console.log("File is not an image, skipping!")
                 }
 
             })
-          picturesRes = imageArray;
+            console.log("Done")
+            setTimeout(() => {
+                res.json(imageArray)
+            }, 1)
         }
         else {
             console.log("No files found!")
@@ -131,7 +134,7 @@ catch(error) {
         console.log("From, admin-get : Fetched Available bookings")
         dataRes = {AvailableBookings: JSON.parse(JSON.stringify(AvailableBookings)), ConfirmedBookings: JSON.parse(JSON.stringify(ConfirmedBookings))}
 
-    return {props: {data: dataRes, information: information, pictures: JSON.parse(JSON.stringify(picturesRes))}}
+    return {props: {data: dataRes, information: information, pictures: JSON.parse(JSON.stringify(imageArray))}}
 }
 
 export default function Home({data, information, pictures}) {
