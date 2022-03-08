@@ -102,9 +102,12 @@ catch(error) {
     })
 
     let data = dataRes
-    
     let information = informationRes
     let pictures = picturesRes
+    
+    if(data == undefined) {data = null}
+    if(information == undefined) {information = null}
+    if(pictures == undefined) {pictures = null}
   
   /*Check bookings
   console.log("Checking bookings!")
