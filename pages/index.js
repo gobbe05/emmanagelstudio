@@ -137,7 +137,7 @@ catch(error) {
 
         console.log("From, admin-get : Fetched Available bookings")
         dataRes = {AvailableBookings: JSON.parse(JSON.stringify(AvailableBookings)), ConfirmedBookings: JSON.parse(JSON.stringify(ConfirmedBookings))}
-    pictures = await newimageArray
+    let pictures = await newimageArray
     return {props: {data: dataRes, information: information, pictures: JSON.stringify(pictures)}}
 }
 
