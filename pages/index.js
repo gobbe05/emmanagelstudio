@@ -80,6 +80,7 @@ catch(error) {
                 let object = {image: image, title: title, comment: comment}
                 if(name.split(".")[1]) {
                     imageArray.push(object)
+                  console.log("Adding object")
                 }
                 else {
                     console.log("File is not an image, skipping!")
@@ -87,9 +88,6 @@ catch(error) {
 
             })
             console.log("Done")
-            setTimeout(() => {
-                res.json(imageArray)
-            }, 1)
         }
         else {
             console.log("No files found!")
