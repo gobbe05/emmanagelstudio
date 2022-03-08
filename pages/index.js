@@ -87,7 +87,7 @@ catch(error) {
                 }
 
             })
-          picturesRes = imageArray;
+          picturesRes = JSON.parse(JSON.stringify(imageArray));
             console.log(picturesRes)
         }
         else {
