@@ -3,11 +3,22 @@ import stylestwo from '../../components/home.module.css'
 import Link from 'next/link'
 
 export async function getStaticProps(context) {
-    const response = await fetch('http://emmanagelstudio.vercel.app/api/admin', {
-    method: "GET",
-  })
+    let response = undefined
+    try {
+            let AvailableBookings = await AvailableBooking.find({})
+            let ConfirmedBookings = await ConfirmedBooking.find({})
+            console.log("From, admin-get : Fetched Available bookings")
+            response = {AvailableBookings: AvailableBookings, ConfirmedBookings: ConfirmedBookings}
+            
+        }
+        catch(error) {
+            console.log("From admin-get, An error was encountered...")
+            console.log("From admin-get, Error : " + error)
+            response = {error: error}
+            
+        }
   
-  const data = await response.json()
+  const data = response
   
   return {props: {data: data}}
   }
