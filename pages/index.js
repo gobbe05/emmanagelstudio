@@ -127,9 +127,10 @@ catch(error) {
         }
 
         console.log("From, admin-get : Fetched Available bookings")
+  await imageArray = JSON.stringify(imageArray)
         dataRes = {AvailableBookings: JSON.parse(JSON.stringify(AvailableBookings)), ConfirmedBookings: JSON.parse(JSON.stringify(ConfirmedBookings))}
 
-    await return {props: {data: dataRes, information: information, pictures: JSON.stringify(imageArray)}}
+    await return {props: {data: dataRes, information: information, pictures: imageArray}}
 }
 
 export default function Home({data, information, pictures}) {
