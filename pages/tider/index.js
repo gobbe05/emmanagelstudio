@@ -4,9 +4,9 @@ import dbConnect from "../../utils/dbConnect"
 import AvailableBooking from "../../models/AvailableBooking"
 import ConfirmedBooking from "../../models/ConfirmedBooking"
 import Link from 'next/link'
-dbConnect()
 
 export async function getStaticProps(context) {
+    dbConnect()
     let response = undefined
     try {
             let AvailableBookings = await AvailableBooking.find({})
