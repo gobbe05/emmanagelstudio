@@ -6,7 +6,6 @@ import Link from "next/link";
 import dbConnect from "../utils/dbConnect";
 import AvailableBooking from "../models/AvailableBooking";
 import ConfirmedBooking from "../models/ConfirmedBooking";
-import { collection } from "../models/AvailableBooking";
 const credentials = require('../Credentials.json');
 import Images from '../models/Images';
 var mongoose = require("mongoose");
@@ -143,7 +142,6 @@ catch(error) {
 
 export default function Home({data, information, pictures}) {
   console.log(data)
-  try {
     let AvailableBookings = data.AvailableBookings
     let sortedBookings = AvailableBookings.sort((a,b) => {
     try {
@@ -188,6 +186,7 @@ export default function Home({data, information, pictures}) {
   })
   
   function showSlides(n) {
+    try {
       var i
       var slides = [myRefone.current, myReftwo.current, myRefthree.current]
       var dots = [myDotone.current, myDottwo.current, myDotthree.current]
