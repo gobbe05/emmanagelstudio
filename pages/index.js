@@ -101,9 +101,9 @@ catch(error) {
         }  
     })
 
-    data = dataRes
-    information = informationRes
-    pictures = picturesRes
+    let data = dataRes
+    let information = informationRes
+    let pictures = picturesRes
   
   //Check bookings
 await fetch('http://localhost:3000/api/checkbookings')
