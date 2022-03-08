@@ -107,7 +107,7 @@ catch(error) {
     
     if(data == undefined) {data = null}
     if(information == undefined) {information = null}
-    if(pictures == undefined) {pictures = null}
+    if(pictures == undefined) {pictures = []}
   
   /*Check bookings
   console.log("Checking bookings!")
