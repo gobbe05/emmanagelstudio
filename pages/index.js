@@ -92,6 +92,7 @@ catch(error) {
         else {
             console.log("No files found!")
         }  
+      console.log(imageArray)
     })
 
     let information = informationRes
