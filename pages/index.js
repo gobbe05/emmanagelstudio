@@ -13,9 +13,8 @@ var mongoose = require("mongoose");
 require('dotenv').config();
 const {google} = require("googleapis");
 
-dbConnect();
-
 export async function getStaticProps(context) {
+  dbConnect();
   let dataRes = undefined
   let informationRes = undefined
   let picturesRes = undefined
