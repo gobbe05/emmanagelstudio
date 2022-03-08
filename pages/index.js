@@ -106,7 +106,6 @@ catch(error) {
     let pictures = picturesRes
   
   //Check bookings
-await fetch('http://localhost:3000/api/checkbookings')
   console.log("Checking bookings!")
         let AvailableBookings = await AvailableBooking.find({})
         let ConfirmedBookings = await ConfirmedBooking.find({})
