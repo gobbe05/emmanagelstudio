@@ -131,7 +131,7 @@ catch(error) {
         console.log("From, admin-get : Fetched Available bookings")
         dataRes = {AvailableBookings: JSON.parse(JSON.stringify(AvailableBookings)), ConfirmedBookings: JSON.parse(JSON.stringify(ConfirmedBookings))}
 
-    return {props: {data: dataRes, information: information, pictures: picturesRes}}
+    return {props: {data: dataRes, information: information, pictures: JSON.parse(JSON.stringify(picturesRes))}}
 }
 
 export default function Home({data, information, pictures}) {
