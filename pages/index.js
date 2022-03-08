@@ -101,8 +101,8 @@ catch(error) {
         }  
     })
 
-    let data = JSON.stringify(dataRes)
-    console.log(data)
+    let data = JSON.parse(JSON.stringify(dataRes))
+    
     let information = informationRes
     let pictures = picturesRes
   
