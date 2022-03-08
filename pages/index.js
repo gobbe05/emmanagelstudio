@@ -8,7 +8,6 @@ import AvailableBooking from "../models/AvailableBooking";
 import ConfirmedBooking from "../models/ConfirmedBooking";
 const credentials = require('../Credentials.json');
 var mongoose = require("mongoose");
-require('dotenv').config();
 const {google} = require("googleapis");
 
 export async function getStaticProps(context) {
