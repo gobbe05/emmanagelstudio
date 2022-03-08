@@ -142,10 +142,10 @@ catch(error) {
 }
 
 export default function Home({data, information, pictures}) {
-  
+  console.log(data)
   try {
     let AvailableBookings = data.AvailableBookings
-  let sortedBookings = AvailableBookings.sort((a,b) => {
+    let sortedBookings = AvailableBookings.sort((a,b) => {
     try {
       a = a.date.split('-').reverse().join('')
       b = b.date.split('-').reverse().join('')
@@ -186,16 +186,8 @@ export default function Home({data, information, pictures}) {
       showSlides(slideIndex)
     }, 5000)
   })
-  }
-  catch (error)
-  {
-  
-    console.log(error)
-  
-  }
   
   function showSlides(n) {
-    try {
       var i
       var slides = [myRefone.current, myReftwo.current, myRefthree.current]
       var dots = [myDotone.current, myDottwo.current, myDotthree.current]
