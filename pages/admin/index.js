@@ -2,14 +2,30 @@ import styles from '../../components/admin.module.css'
 import {useState, useEffect} from "react"
 import Router from 'next/router'
 import {useCookies} from 'react-cookie'
+import dbConnect from "../../utils/dbConnect"
+import AvailableBooking from "../../models/AvailableBooking"
+import ConfirmedBooking from "../../models/ConfirmedBooking"
 
 export async function getStaticProps(context) {
-        const response = await fetch('http://emmanagelstudio.vercel.app/api/admin', {
-        method: "GET",
-    })
+    dbConnect()
+    let response = undefined
+        try {
+            let AvailableBookings = await AvailableBooking.find({})
+            let ConfirmedBookings = await ConfirmedBooking.find({})
+            console.log("From, admin-get : Fetched Available bookings")
+            response = {AvailableBookings: AvailableBookings, ConfirmedBookings: ConfirmedBookings}
+            
+        }
+        catch(error) {
+            console.log("From admin-get, An error was encountered...")
+            console.log("From admin-get, Error : " + error)
+            response = {error: error}
+        }
 
-    const data = await response.json()
-    await fetch('http://emmanagelstudio.vercel.app/api/checkbookings')
+    await console.log(JSON.stringify(response))
+
+    const data = {}
+    await fetch('http://localhost:3000/api/checkbookings')
     return {props: {data: data}}
 }
 
@@ -45,7 +61,7 @@ export default function Admin({data}) {
             newBookingTime: newBookingTime,
             funcMethod: "POST AvailableBooking",
         }
-        const response = await fetch('http://emmanagelstudio.vercel.app/api/admin', {
+        const response = await fetch('http://localhost:3000/api/admin', {
             method: "POST",
             body: JSON.stringify({dataBody}),
             headers: {
@@ -61,7 +77,7 @@ export default function Admin({data}) {
             bookingtime: time
         }
         
-        const response = await fetch('http://emmanagelstudio.vercel.app/api/admin', {
+        const response = await fetch('http://localhost:3000/api/admin', {
             method: "DELETE",
             body: JSON.stringify({dataBody}),
             headers: {
