@@ -88,7 +88,7 @@ catch(error) {
                 }
 
             })
-          picturesRes = JSON.parse(JSON.stringify(imageArray));
+          picturesRes = imageArray;
         }
         else {
             console.log("No files found!")
