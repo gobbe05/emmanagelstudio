@@ -87,10 +87,8 @@ catch(error) {
                 }
 
             })
-            console.log("Done")
-            setTimeout(() => {
-                picturesRes = imageArray;
-            }, 1)
+          picturesRes = imageArray;
+            console.log(picturesRes)
         }
         else {
             console.log("No files found!")
