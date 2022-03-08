@@ -114,27 +114,13 @@ export default function Admin({data}) {
             bookingdate: date,
             bookingtime: time
         }
-        //API admin DELETE function
-
-        console.log(req.body.dataBody.bookingdate)
-        try {
-            let bookingdate = req.body.dataBody.bookingdate
-            let bookingtime = req.body.dataBody.bookingtime
-            console.log(await AvailableBooking.findOne({date: bookingdate, time: bookingtime}))
-            await AvailableBooking.findOneAndDelete({date: bookingdate, time: bookingtime}, (err ,docs) => {
-                if(err) {
-                    console.log("From, admin, : There was an error")
-                    console.log(err)
-                }
-                else {
-                    console.log("From, admin, : Deleted ",docs)              
-                }
-            })
-        }
-        catch (error) {
-            console.log("From, admin : An error was encountered...")
-            console.log("From, admin : Error : " + error)   
-        }
+        const response = await fetch('http://localhost:3000/api/admin', {
+            method: "DELETE",
+            body: JSON.stringify({dataBody}),
+            headers: {
+                'Content-Type': "application/json"
+            }
+        })
 
         Router.reload()
     }
