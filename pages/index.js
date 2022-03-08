@@ -99,7 +99,6 @@ catch(error) {
     let pictures = picturesRes
     
     if(information == undefined) {information = null}
-    if(pictures == undefined) {pictures = []}
   
   //Check bookings
         console.log("Checking bookings!")
