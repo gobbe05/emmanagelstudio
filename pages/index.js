@@ -142,7 +142,9 @@ catch(error) {
 }
 
 export default function Home({data, information, pictures}) {
-  let AvailableBookings = data.AvailableBookings
+  
+  try {
+    let AvailableBookings = data.AvailableBookings
   let sortedBookings = AvailableBookings.sort((a,b) => {
     try {
       a = a.date.split('-').reverse().join('')
@@ -184,6 +186,14 @@ export default function Home({data, information, pictures}) {
       showSlides(slideIndex)
     }, 5000)
   })
+  }
+  catch (error)
+  {
+  
+    console.log(error)
+  
+  }
+  
   function showSlides(n) {
     try {
       var i
