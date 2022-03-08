@@ -7,6 +7,7 @@ import dbConnect from "../utils/dbConnect"
 import AvailableBooking from "../models/AvailableBooking"
 import ConfirmedBooking from "../models/ConfirmedBooking"
 import { collection } from "../models/AvailableBooking"
+const credentials = require('../Credentials.json')
 import Images from '../models/Images'
 var mongoose = require("mongoose")
 require('dotenv').config()
@@ -54,7 +55,6 @@ catch(error) {
         "https://www.googleapis.com/auth/drive"
     ]
 
-    const credentials = require('../../Credentials.json')
     const auth = new google.auth.JWT(
         credentials.client_email, null,
         credentials.private_key, scopes
