@@ -35,13 +35,13 @@ catch(error) {
   //Fetchinformation call
   
   try {
-  var connection = mongoose.connection
-  let object = await connection.db.collection('information').findOne({})
+    var connection = mongoose.connection
+    let object = await connection.db.collection('information').findOne({})
 
-  information = {text: object.text}
+    information = {text: object.text}
   }
   catch {
-  informationRes = {}
+    informationRes = {}
   }
   
   //Getimages call
@@ -55,10 +55,14 @@ catch(error) {
         credentials.private_key, scopes
     )
     const drive = google.drive({version: "v3", auth})
-
-    drive.files.list({
+    
+    
+    const newimageArray = () => {
+      return new Promise((resolve, reject) => {
+      
+        drive.files.list({
         fields: "files(name, webViewLink, exportLinks, contentHints)"
-    },
+        },
 
     (err,response) => {
         if(err) throw err;
@@ -92,6 +96,11 @@ catch(error) {
             console.log("No files found!")
         }  
     })
+      if (err) return reject(err)
+      resolve(imageArray)
+      }
+    }
+    
 
     let information = informationRes
     
@@ -129,7 +138,7 @@ catch(error) {
         console.log("From, admin-get : Fetched Available bookings")
         dataRes = {AvailableBookings: JSON.parse(JSON.stringify(AvailableBookings)), ConfirmedBookings: JSON.parse(JSON.stringify(ConfirmedBookings))}
 
-    await return {props: {data: dataRes, information: information, pictures: JSON.stringify(imageArray)}}
+    return {props: {data: dataRes, information: information, pictures: JSON.stringify(newimageArray)}}
 }
 
 export default function Home({data, information, pictures}) {
