@@ -3,19 +3,140 @@ import React, { useEffect, useState } from 'react'
 import {useCookies} from 'react-cookie'
 import styles from '../components/home.module.css'
 import Link from "next/link"
+import dbConnect from "../../utils/dbConnect"
+import AvailableBooking from "../../models/AvailableBooking"
+import ConfirmedBooking from "../../models/ConfirmedBooking"
+import { collection } from "../../models/AvailableBooking"
+import Images from '../../models/Images'
+var mongoose = require("mongoose")
+require('dotenv').config()
+const {google} = require("googleapis")
+
+dbConnect();
 
 export async function getStaticProps(context) {
-  const [dataRes, informationRes, picturesRes] = await Promise.all([
-    fetch('http://emmanagelstudio.vercel.app/api/admin'),
-    fetch('http://emmanagelstudio.vercel.app/api/fetchinformation'),
-    fetch('http://emmanagelstudio.vercel.app/api/getimages'),])
+  let dataRes = undefined
+  let informationRes = undefined
+  let pictureRes = undefined
+  
+  //Admin call
+  
+  try {
+            let AvailableBookings = await AvailableBooking.find({})
+            let ConfirmedBookings = await ConfirmedBooking.find({})
+            console.log("From, admin-get : Fetched Available bookings")
+            dataRes = {AvailableBookings: AvailableBookings, ConfirmedBookings: ConfirmedBookings}
+            
+        }
+catch(error) {
+            console.log("From admin-get, An error was encountered...")
+            console.log("From admin-get, Error : " + error)
+            dataRes = {error: error}
+            
+}
+  
+  //Fetchinformation call
+  
+  try {
+            var connection = mongoose.connection
+            let object = await connection.db.collection('information').findOne({})
 
-    const [data, information, pictures] = await Promise.all([
-      dataRes.json(),
-      informationRes.json(),
-      picturesRes.json(),
-    ])
+            information = {text: object.text}
+        }
+        catch {
+            informationRes = {}
+        }
+  
+  //Getimages call
+  
+   let imageArray = []
+    const scopes = [
+        "https://www.googleapis.com/auth/drive"
+    ]
+
+    const credentials = require('../../Credentials.json')
+    const auth = new google.auth.JWT(
+        credentials.client_email, null,
+        credentials.private_key, scopes
+    )
+    const drive = google.drive({version: "v3", auth})
+
+    drive.files.list({
+        fields: "files(name, webViewLink, exportLinks, contentHints)"
+    },
+
+    (err,response) => {
+        if(err) throw err;
+        console.log("Fetching items from Google Drive.....")
+        const files = response.data.files;
+        if(files.length) {
+            files.map((file) => {
+                console.log(file)
+                let split = file.webViewLink.split("/")
+                let id = split[5]
+                let name = file.name
+                let title = ""
+                let comment = ""
+                if(name.split("?")[1]) {
+                    title = file.name.split("?")[0]
+                    comment = file.name.split("?")[1].split(".")[0]
+                }
+                let image = "https://drive.google.com/uc?export=view&id=" + id
+                let object = {image: image, title: title, comment: comment}
+                if(name.split(".")[1]) {
+                    imageArray.push(object)
+                }
+                else {
+                    console.log("File is not an image, skipping!")
+                }
+
+            })
+            console.log("Done")
+            setTimeout(() => {
+                picturesRes = imageArray;
+            }, 1)
+        }
+        else {
+            console.log("No files found!")
+        }  
+    })
+
+    data = dataRes
+    information = informationRes
+    pictures = picturesRes
+  
+  //Check bookings
 await fetch('http://localhost:3000/api/checkbookings')
+  console.log("Checking bookings!")
+        let AvailableBookings = await AvailableBooking.find({})
+        let ConfirmedBookings = await ConfirmedBooking.find({})
+
+        for (let i=0; i < AvailableBooking.length; i++) {
+            try{
+                if(Date.parse(AvailableBookings[i].date)-Date.parse(new Date()) <= 0) {
+                    console.log("Trying to delete date")
+                    await AvailableBooking.findOneAndDelete({date: AvailableBookings[i].date})
+                }
+            }
+            catch {
+
+            }
+        }
+        
+        for (let i=0; i < ConfirmedBookings.length; i++) {
+            let day = ConfirmedBookings[i].date.split("-")
+            if(parseInt(day[2]) < new Date().getDate()) {
+                console.log("Removing confirmed booking")
+                await ConfirmedBooking.findOneAndDelete({date: ConfirmedBookings[i].date}, (err) => {
+                    console.log(err)
+                })
+            }
+        
+            
+        }
+
+        console.log("From, admin-get : Fetched Available bookings")
+        data = {AvailableBookings: AvailableBookings, ConfirmedBookings: ConfirmedBookings}
 return {props: {data: data, information: information, pictures: pictures}}
 }
 
