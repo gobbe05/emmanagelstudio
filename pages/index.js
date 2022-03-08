@@ -18,7 +18,7 @@ dbConnect();
 export async function getStaticProps(context) {
   let dataRes = undefined
   let informationRes = undefined
-  let pictureRes = undefined
+  let picturesRes = undefined
   
   //Admin call
   
