@@ -92,7 +92,7 @@ catch(error) {
             console.log("No files found!")
         }  
       console.log("Done : " + JSON.stringify(imageArray))
-      imageArray = JSON.stringify(imageArraY)
+      imageArray = JSON.stringify(imageArray)
     })
 
     let information = informationRes
