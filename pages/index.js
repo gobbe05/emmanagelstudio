@@ -7,7 +7,7 @@ import AvailableBooking from "../models/AvailableBooking";
 import ConfirmedBooking from "../models/ConfirmedBooking";
 var mongoose = require("mongoose");
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   dbConnect();
   let data = null
   let information = null
