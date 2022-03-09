@@ -24,8 +24,6 @@ export async function getServerSideProps(context) {
             response = {error: error}
         }
 
-    await console.log(JSON.stringify(response))
-
     // Check bookings
 
         console.log("Checking bookings!")

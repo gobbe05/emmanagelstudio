@@ -42,6 +42,7 @@ export default async (req,res) => {
                 let object = {image: image, title: title, comment: comment}
                 if(name.split(".")[1]) {
                     imageArray.push(object)
+                    console.log(imageArray)
                 }
                 else {
                     console.log("File is not an image, skipping!")
@@ -57,5 +58,5 @@ export default async (req,res) => {
             console.log("No files found!")
         }  
     })
-    res.json(imageArray)
+    
 }

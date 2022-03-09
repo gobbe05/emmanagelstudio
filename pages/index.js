@@ -7,26 +7,12 @@ import AvailableBooking from "../models/AvailableBooking";
 import ConfirmedBooking from "../models/ConfirmedBooking";
 var mongoose = require("mongoose");
 
-export async function getStaticProps(context) {
+
+export async function getServerSideProps(context) {
   dbConnect();
   let data = null
   let information = null
   
-  //Admin call
-  
-    try {
-      let AvailableBookings = await AvailableBooking.find({})
-      let ConfirmedBookings = await ConfirmedBooking.find({})
-      console.log("From, admin-get : Fetched Available bookings")
-      data = {AvailableBookings: JSON.parse(JSON.stringify(AvailableBookings)), ConfirmedBookings: JSON.parse(JSON.stringify(ConfirmedBookings))}
-      
-  }
-  catch(error) {
-      console.log("From admin-get, An error was encountered...")
-      console.log("From admin-get, Error : " + error)
-      data = {error: error}
-      
-  }
   
   //Fetchinformation call
     try {
@@ -72,10 +58,21 @@ export async function getStaticProps(context) {
         return {props: {data: data, information: information, pictures: {}}}
 }
 
-export default function Home({data, information}) {
+export default function Home({data, information, availablebookings}) {
   
-  const [AvailableBookings, setAvailableBookings] = useState([])
-  const [sortedBookings, setSortedBookings] = useState([])
+  let AvailableBookings = data.AvailableBookings
+  let sortedBookings = AvailableBookings.sort((a,b) => {
+    try {
+      a = a.date.split('-').reverse().join('')
+      b = b.date.split('-').reverse().join('')
+      console.log(a > b ? 1 : a < b ? -1 : 0)
+      return a > b ? 1 : a < b ? -1 : 0
+    }
+    catch(error) {
+      console.log
+    }
+    
+  })
 
   let slideIndex = 1
   let slideActivated = false
@@ -97,19 +94,6 @@ export default function Home({data, information}) {
 
   const [bookingsLoaded, setBookingsLoaded] = useState(false)
   const [imagesLoaded, setImagesLoaded] = useState(false)
-
-  async function CheckBookings() {
-    const response = await fetch('/api/checkbookings', {
-      method: "GET",
-      headers: {
-          'Content-Type': "application/json"
-      }
-    })
-    const result = await response.json()
-    setAvailableBookings(result.AvailableBookings)
-    setBookingsLoaded(true)
-    
-  }
   
   async function GetImages() {
     const response = await fetch('/api/getimages', {
@@ -122,24 +106,13 @@ export default function Home({data, information}) {
     setImageArray(result)
   }
 
-
   useEffect(() => {
     GetImages()
-    CheckBookings()
+  }, [])
 
-      setSortedBookings(AvailableBookings.sort((a,b) => {
-        try {
-          a = a.date.split('-').reverse().join('')
-          b = b.date.split('-').reverse().join('')
-          console.log(a > b ? 1 : a < b ? -1 : 0)
-          return a > b ? 1 : a < b ? -1 : 0
-        }
-        catch(error) {
-          console.log
-        }
-        
-      }))
-  }, [bookingsLoaded, imagesLoaded])
+  useEffect(() => {
+    console.log(imageArray)
+  }, [imageArray])
 
   useEffect(() => {
     showSlides(slideIndex)
