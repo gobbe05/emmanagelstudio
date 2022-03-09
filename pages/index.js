@@ -148,6 +148,7 @@ export default function Home({data, information}) {
                 let image = "https://drive.google.com/uc?export=view&id=" + id
                 let object = {image: image, title: title, comment: comment}
                 if(name.split(".")[1]) {
+                    console.log("adding : " + object)
                     setImageArray(oldArray => [...imageArray,object])
                 }
                 else {
