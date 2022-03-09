@@ -43,64 +43,6 @@ catch(error) {
   catch {
     informationRes = {}
   }
-  
-  //Getimages call
-  
-   let imageArray = []
-    const scopes = [
-        "https://www.googleapis.com/auth/drive"
-    ]
-    const auth = new google.auth.JWT(
-        credentials.client_email, null,
-        credentials.private_key, scopes
-    )
-    const drive = google.drive({version: "v3", auth})
-    
-    
-    const newimageArray = () => {
-      return new Promise((resolve, reject) => {
-      
-        drive.files.list({
-        fields: "files(name, webViewLink, exportLinks, contentHints)"
-        },
-
-    (err,response) => {
-        if(err) throw err;
-        console.log("Fetching items from Google Drive.....")
-        const files = response.data.files;
-        if(files.length) {
-            files.map((file) => {
-                console.log(file)
-                let split = file.webViewLink.split("/")
-                let id = split[5]
-                let name = file.name
-                let title = ""
-                let comment = ""
-                if(name.split("?")[1]) {
-                    title = file.name.split("?")[0]
-                    comment = file.name.split("?")[1].split(".")[0]
-                }
-                let image = "https://drive.google.com/uc?export=view&id=" + id
-                let object = {image: image, title: title, comment: comment}
-                if(name.split(".")[1]) {
-                    imageArray.push(object)
-                  console.log("Adding object")
-                }
-                else {
-                    console.log("File is not an image, skipping!")
-                }
-
-            })
-        }
-        else {
-            console.log("No files found!")
-        }  
-    })
-      if (err) return reject(err)
-      resolve(imageArray)
-      })
-    }
-    
 
     let information = informationRes
     
@@ -142,6 +84,8 @@ catch(error) {
 }
 
 export default function Home({data, information, pictures}) {
+  
+  
     console.log("pictures array : " + JSON.parse(pictures))
     pictures = JSON.parse(pictures)
     let AvailableBookings = data.AvailableBookings
@@ -174,6 +118,52 @@ export default function Home({data, information, pictures}) {
   const [updateText, setUpdateText] = useState("")
   const [text, setText] = useState("")
   const [edit, setEdit] = useState(false)
+  const [imageArray, setImageArray] = useState([])
+  
+    const scopes = [
+        "https://www.googleapis.com/auth/drive"
+    ]
+    const auth = new google.auth.JWT(
+        credentials.client_email, null,
+        credentials.private_key, scopes
+    )
+    const drive = google.drive({version: "v3", auth})
+        drive.files.list({
+        fields: "files(name, webViewLink, exportLinks, contentHints)"
+        },
+
+    (err,response) => {
+        if(err) throw err;
+        console.log("Fetching items from Google Drive.....")
+        const files = response.data.files;
+        if(files.length) {
+            files.map((file) => {
+                console.log(file)
+                let split = file.webViewLink.split("/")
+                let id = split[5]
+                let name = file.name
+                let title = ""
+                let comment = ""
+                if(name.split("?")[1]) {
+                    title = file.name.split("?")[0]
+                    comment = file.name.split("?")[1].split(".")[0]
+                }
+                let image = "https://drive.google.com/uc?export=view&id=" + id
+                let object = {image: image, title: title, comment: comment}
+                if(name.split(".")[1]) {
+                    setImageArray(() => {imageArray.push(object)})
+                  console.log("Adding object")
+                }
+                else {
+                    console.log("File is not an image, skipping!")
+                }
+
+            })
+        }
+        else {
+            console.log("No files found!")
+        }  
+    })
 
   useEffect(() => {
     showSlides(slideIndex)
