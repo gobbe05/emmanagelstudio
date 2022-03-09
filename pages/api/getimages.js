@@ -58,5 +58,5 @@ export default async (req,res) => {
             console.log("No files found!")
         }  
     })
-
+    res.json(imageArray)
 }

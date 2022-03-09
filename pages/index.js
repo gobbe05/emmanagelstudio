@@ -7,7 +7,7 @@ import AvailableBooking from "../models/AvailableBooking";
 import ConfirmedBooking from "../models/ConfirmedBooking";
 var mongoose = require("mongoose");
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   dbConnect();
   let data = null
   let information = null
@@ -73,18 +73,30 @@ export async function getServerSideProps(context) {
 }
 
 export default function Home({data, information}) {
-    let AvailableBookings = data.AvailableBookings
-    let sortedBookings = AvailableBookings.sort((a,b) => {
-    try {
-      a = a.date.split('-').reverse().join('')
-      b = b.date.split('-').reverse().join('')
-      console.log(a > b ? 1 : a < b ? -1 : 0)
-      return a > b ? 1 : a < b ? -1 : 0
-    }
-    catch {
+  async function CheckBookings() {
+    const response = await fetch('/api/checkbookings', {
+      method: "GET",
+      headers: {
+          'Content-Type': "application/json"
+      }
+    })
+    const result = await response.json()
+    setAvailableBookings(result.AvailableBookings)
+    setSortedBookings(AvailableBookings.sort((a,b) => {
+      try {
+        a = a.date.split('-').reverse().join('')
+        b = b.date.split('-').reverse().join('')
+        console.log(a > b ? 1 : a < b ? -1 : 0)
+        return a > b ? 1 : a < b ? -1 : 0
+      }
+      catch {
+  
+      }
+    }))
+  }
+    const [AvailableBookings, setAvailableBookings] = useState([])
+    const [sortedBookings, setSortedBookings] = useState([])
 
-    }
-  })
   let slideIndex = 1
   let slideActivated = false
 
@@ -117,6 +129,7 @@ export default function Home({data, information}) {
   useEffect(() => {
     showSlides(slideIndex)
     GetImages()
+    CheckBookings()
     setText(information.text)
   })
   useEffect(() => {
