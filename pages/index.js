@@ -14,7 +14,6 @@ export async function getStaticProps(context) {
   dbConnect();
   let dataRes = undefined
   let informationRes = undefined
-  let picturesRes = undefined
   
   //Admin call
   
@@ -149,7 +148,7 @@ export default function Home({data, information}) {
                 let image = "https://drive.google.com/uc?export=view&id=" + id
                 let object = {image: image, title: title, comment: comment}
                 if(name.split(".")[1]) {
-                    setImageArray(() => {imageArray.push(object)})
+                    setImageArray(state => return state.push(object))
                   console.log("Adding object")
                 }
                 else {
