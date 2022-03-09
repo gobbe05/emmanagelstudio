@@ -23,7 +23,6 @@ export default function Galleri() {
       useEffect(() => {
         GetImages()
       }, [])
-
     
     return (
         <>
