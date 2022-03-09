@@ -26,8 +26,6 @@ export async function getStaticProps(context) {
 
     await console.log(JSON.stringify(response))
 
-    const data = {}
-
     // Check bookings
 
         console.log("Checking bookings!")
@@ -59,7 +57,7 @@ export async function getStaticProps(context) {
         }
 
         console.log("From, admin-get : Fetched Available bookings")
-        response = {AvailableBookings: AvailableBookings, ConfirmedBookings: ConfirmedBookings}
+        const data = {AvailableBookings: JSON.parse(JSON.stringify(AvailableBookings)), ConfirmedBookings: JSON.parse(JSON.stringify(ConfirmedBookings))}
     
     //Return props
     return {props: {data: data}}
@@ -99,7 +97,7 @@ export default function Admin({data}) {
             newBookingTime: newBookingTime,
             funcMethod: "POST AvailableBooking",
         }
-        const response = await fetch('http://localhost:3000/api/admin', {
+        const response = await fetch('/api/admin', {
             method: "POST",
             body: JSON.stringify({dataBody}),
             headers: {
@@ -114,7 +112,7 @@ export default function Admin({data}) {
             bookingdate: date,
             bookingtime: time
         }
-        const response = await fetch('http://localhost:3000/api/admin', {
+        const response = await fetch('/api/admin', {
             method: "DELETE",
             body: JSON.stringify({dataBody}),
             headers: {

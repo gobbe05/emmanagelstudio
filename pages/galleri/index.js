@@ -1,5 +1,6 @@
 import styles from '../../components/galleri.module.css'
 import {useCookies} from 'react-cookie'
+import { useState, useEffect } from 'react'
 
 export async function getServerSideProps() {
     const res = await fetch("http://localhost:3000/api/getimages")
@@ -13,11 +14,25 @@ export async function getServerSideProps() {
 }
 
 
-export default function Galleri({data}) {
-            
-    let arrayOfPosts = data
+export default function Galleri() {
+    const [arrayOfPosts, setArrayOfPosts] = useState([])
     const [loggedIn, setLoggedIn] = useCookies(["loggedin"])
 
+    async function GetImages() {
+        const response = await fetch('/api/getimages', {
+          method: "GET",
+          headers: {
+              'Content-Type': "application/json"
+          }
+      })
+        const result = await response.json()
+        setArrayOfPosts(result)
+      }
+    
+    useEffect(() => {
+        GetImages()
+    })
+    
     return (
         <>
         <div className={styles.galleriCTR}>
