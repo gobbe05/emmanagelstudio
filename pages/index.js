@@ -18,7 +18,7 @@ export async function getStaticProps(context) {
       let AvailableBookings = await AvailableBooking.find({})
       let ConfirmedBookings = await ConfirmedBooking.find({})
       console.log("From, admin-get : Fetched Available bookings")
-      data = {AvailableBookings: AvailableBookings, ConfirmedBookings: ConfirmedBookings}
+      data = {AvailableBookings: JSON.parse(JSON.stringify(AvailableBookings)), ConfirmedBookings: JSON.parse(JSON.stringify(ConfirmedBookings))}
       
   }
   catch(error) {
@@ -63,12 +63,10 @@ export async function getStaticProps(context) {
                     console.log(err)
                 })
             }
-        
-            
         }
 
         console.log("From, admin-get : Fetched Available bookings")
-        data = {AvailableBookings: AvailableBookings, ConfirmedBookings: JSON.parse(JSON.stringify(ConfirmedBookings))}
+        data = {AvailableBookings: JSON.parse(JSON.stringify(AvailableBookings)), ConfirmedBookings: JSON.parse(JSON.stringify(ConfirmedBookings))}
     
   
         return {props: {data: data, information: information, pictures: {}}}

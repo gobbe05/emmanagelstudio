@@ -104,7 +104,7 @@ export default function Admin({data}) {
                 'Content-Type': "application/json"
             }
         })
-        Router.reload()
+        
     }
 
     async function RemoveBooking(date, time) {
