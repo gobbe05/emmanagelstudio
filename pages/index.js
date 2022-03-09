@@ -148,8 +148,8 @@ export default function Home({data, information}) {
                 let image = "https://drive.google.com/uc?export=view&id=" + id
                 let object = {image: image, title: title, comment: comment}
                 if(name.split(".")[1]) {
-                    setImageArray(state => {return state.push(object)})
-                  console.log("Adding object")
+                    setImageArray(oldArray => [...oldArray,object])
+                    console.log("Image array : " + imageArray)
                 }
                 else {
                     console.log("File is not an image, skipping!")
