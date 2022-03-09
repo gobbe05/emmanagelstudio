@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import React, { useEffect, useState } from 'react';
 import {useCookies} from 'react-cookie';
 import styles from '../components/home.module.css';
@@ -6,48 +5,42 @@ import Link from "next/link";
 import dbConnect from "../utils/dbConnect";
 import AvailableBooking from "../models/AvailableBooking";
 import ConfirmedBooking from "../models/ConfirmedBooking";
-const credentials = require('../Credentials.json');
 var mongoose = require("mongoose");
-const {google} = require("googleapis");
 
 export async function getStaticProps(context) {
   dbConnect();
-  let dataRes = null
+  let data = null
   let information = null
   
   //Admin call
   
-  try {
+    try {
       let AvailableBookings = await AvailableBooking.find({})
       let ConfirmedBookings = await ConfirmedBooking.find({})
       console.log("From, admin-get : Fetched Available bookings")
-      dataRes = {AvailableBookings: JSON.parse(JSON.stringify(AvailableBookings)), ConfirmedBookings: JSON.parse(JSON.stringify(ConfirmedBookings))}
-            
+      data = {AvailableBookings: AvailableBookings, ConfirmedBookings: ConfirmedBookings}
+      
   }
-catch(error) {
-            console.log("From admin-get, An error was encountered...")
-            console.log("From admin-get, Error : " + error)
-            dataRes = {error: error}
-            
-}
+  catch(error) {
+      console.log("From admin-get, An error was encountered...")
+      console.log("From admin-get, Error : " + error)
+      data = {error: error}
+      
+  }
   
   //Fetchinformation call
-  
-  try {
-    var connection = mongoose.connection
-    let object = await connection.db.collection('information').findOne({})
-    if(object != null) {
+    try {
+      var connection = mongoose.connection
+      let object = await connection.db.collection('information').findOne({})
 
-    }
-    information = {text: object.text}
+      information = {text: object.text}
   }
   catch {
-    
+      information = {}
   }
-    
-    if(information == undefined) {information = null}
   
   //Check bookings
+  
         console.log("Checking bookings!")
         let AvailableBookings = await AvailableBooking.find({})
         let ConfirmedBookings = await ConfirmedBooking.find({})
@@ -59,9 +52,7 @@ catch(error) {
                     await AvailableBooking.findOneAndDelete({date: AvailableBookings[i].date})
                 }
             }
-            catch {
-
-            }
+            catch {}
         }
         
         for (let i=0; i < ConfirmedBookings.length; i++) {
@@ -77,14 +68,13 @@ catch(error) {
         }
 
         console.log("From, admin-get : Fetched Available bookings")
-        dataRes = {AvailableBookings: JSON.parse(JSON.stringify(AvailableBookings)), ConfirmedBookings: JSON.parse(JSON.stringify(ConfirmedBookings))}
+        data = {AvailableBookings: AvailableBookings, ConfirmedBookings: JSON.parse(JSON.stringify(ConfirmedBookings))}
     
   
-        return {props: {data: dataRes, information: information}}
+        return {props: {data: data, information: information, pictures: {}}}
 }
 
 export default function Home({data, information}) {
-  
     let AvailableBookings = data.AvailableBookings
     let sortedBookings = AvailableBookings.sort((a,b) => {
     try {
@@ -115,53 +105,20 @@ export default function Home({data, information}) {
   const [edit, setEdit] = useState(false)
   const [imageArray, setImageArray] = useState([])
   
-    const scopes = [
-        "https://www.googleapis.com/auth/drive"
-    ]
-    const auth = new google.auth.JWT(
-        credentials.client_email, null,
-        credentials.private_key, scopes
-    )
-    const drive = google.drive({version: "v3", auth})
-        drive.files.list({
-        fields: "files(name, webViewLink, exportLinks, contentHints)"
-        },
-
-    (err,response) => {
-        if(err) throw err;
-        console.log("Fetching items from Google Drive.....")
-        const files = response.data.files;
-        if(files.length) {
-            files.map((file) => {
-                console.log(file)
-                let split = file.webViewLink.split("/")
-                let id = split[5]
-                let name = file.name
-                let title = ""
-                let comment = ""
-                if(name.split("?")[1]) {
-                    title = file.name.split("?")[0]
-                    comment = file.name.split("?")[1].split(".")[0]
-                }
-                let image = "https://drive.google.com/uc?export=view&id=" + id
-                let object = {image: image, title: title, comment: comment}
-                if(name.split(".")[1]) {
-                    console.log("adding : " + JSON.parse(JSON.stringify(imageArray)))
-                    setImageArray(imageArray.push(object))
-                }
-                else {
-                    console.log("File is not an image, skipping!")
-                }
-
-            })
-        }
-        else {
-            console.log("No files found!")
-        }  
-    })
+  async function GetImages() {
+    const response = await fetch('/api/getimages', {
+      method: "GET",
+      headers: {
+          'Content-Type': "application/json"
+      }
+  })
+    const result = await response.json()
+    setImageArray(result)
+  }
 
   useEffect(() => {
     showSlides(slideIndex)
+    GetImages()
     setText(information.text)
   })
   useEffect(() => {
