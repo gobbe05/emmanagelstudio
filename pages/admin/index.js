@@ -6,7 +6,7 @@ import dbConnect from "../../utils/dbConnect"
 import AvailableBooking from "../../models/AvailableBooking"
 import ConfirmedBooking from "../../models/ConfirmedBooking"
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
     dbConnect()
 
     //Create Response
