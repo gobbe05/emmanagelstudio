@@ -2,16 +2,7 @@ import styles from '../../components/galleri.module.css'
 import {useCookies} from 'react-cookie'
 import { useState, useEffect } from 'react'
 
-export async function getServerSideProps() {
-    const res = await fetch("http://localhost:3000/api/getimages")
-    const data = await res.json()
 
-    if(data) {
-        console.log("Succesfully loaded items from server")
-    }
-
-    return {props: {data: data}}
-}
 
 
 export default function Galleri() {
@@ -24,14 +15,15 @@ export default function Galleri() {
           headers: {
               'Content-Type': "application/json"
           }
-      })
+        })
         const result = await response.json()
         setArrayOfPosts(result)
       }
     
-    useEffect(() => {
+      useEffect(() => {
         GetImages()
-    })
+      }, [])
+
     
     return (
         <>

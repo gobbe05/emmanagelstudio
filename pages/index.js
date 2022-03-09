@@ -111,10 +111,6 @@ export default function Home({data, information, availablebookings}) {
   }, [])
 
   useEffect(() => {
-    console.log(imageArray)
-  }, [imageArray])
-
-  useEffect(() => {
     showSlides(slideIndex)
     setText(information.text)
   })
