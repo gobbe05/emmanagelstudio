@@ -79,10 +79,12 @@ catch(error) {
 
         console.log("From, admin-get : Fetched Available bookings")
         dataRes = {AvailableBookings: JSON.parse(JSON.stringify(AvailableBookings)), ConfirmedBookings: JSON.parse(JSON.stringify(ConfirmedBookings))}
-    return {props: {data: dataRes, information: information}}
+    
+  
+        return {props: {data: dataRes, information: information}}
 }
 
-export default function Home({data, information) {
+export default function Home({data, information}) {
   
     let AvailableBookings = data.AvailableBookings
     let sortedBookings = AvailableBookings.sort((a,b) => {
