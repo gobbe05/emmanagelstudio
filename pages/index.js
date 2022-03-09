@@ -79,15 +79,11 @@ catch(error) {
 
         console.log("From, admin-get : Fetched Available bookings")
         dataRes = {AvailableBookings: JSON.parse(JSON.stringify(AvailableBookings)), ConfirmedBookings: JSON.parse(JSON.stringify(ConfirmedBookings))}
-    let pictures = await newimageArray.json()
-    return {props: {data: dataRes, information: information, pictures: pictures}}
+    return {props: {data: dataRes, information: information}}
 }
 
-export default function Home({data, information, pictures}) {
+export default function Home({data, information) {
   
-  
-    console.log("pictures array : " + JSON.parse(pictures))
-    pictures = JSON.parse(pictures)
     let AvailableBookings = data.AvailableBookings
     let sortedBookings = AvailableBookings.sort((a,b) => {
     try {
@@ -237,7 +233,7 @@ export default function Home({data, information, pictures}) {
       <div className={styles.sliderCTR} >
 
         {
-          pictures.map((item) => {
+          imageArray.map((item) => {
             refId++;
             return (
               <div key={item.image} ref={refArr[refId-1] } className={`${styles.mySlides} ${styles.fade} `}>
