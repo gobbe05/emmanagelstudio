@@ -12,18 +12,18 @@ const {google} = require("googleapis");
 
 export async function getStaticProps(context) {
   dbConnect();
-  let dataRes = undefined
-  let informationRes = undefined
+  let dataRes = null
+  let information = null
   
   //Admin call
   
   try {
-            let AvailableBookings = await AvailableBooking.find({})
-            let ConfirmedBookings = await ConfirmedBooking.find({})
-            console.log("From, admin-get : Fetched Available bookings")
-            dataRes = {AvailableBookings: JSON.parse(JSON.stringify(AvailableBookings)), ConfirmedBookings: JSON.parse(JSON.stringify(ConfirmedBookings))}
+      let AvailableBookings = await AvailableBooking.find({})
+      let ConfirmedBookings = await ConfirmedBooking.find({})
+      console.log("From, admin-get : Fetched Available bookings")
+      dataRes = {AvailableBookings: JSON.parse(JSON.stringify(AvailableBookings)), ConfirmedBookings: JSON.parse(JSON.stringify(ConfirmedBookings))}
             
-        }
+  }
 catch(error) {
             console.log("From admin-get, An error was encountered...")
             console.log("From admin-get, Error : " + error)
@@ -36,14 +36,14 @@ catch(error) {
   try {
     var connection = mongoose.connection
     let object = await connection.db.collection('information').findOne({})
+    if(object != null) {
 
+    }
     information = {text: object.text}
   }
   catch {
-    informationRes = {}
+    
   }
-
-    let information = informationRes
     
     if(information == undefined) {information = null}
   
@@ -100,12 +100,10 @@ export default function Home({data, information}) {
   let slideIndex = 1
   let slideActivated = false
 
-  let images = 0;
   let refId = 0;
   let myRefone = React.createRef()
   let myReftwo = React.createRef()
   let myRefthree = React.createRef()
-  let myReffour = React.createRef()
   let refArr = [myRefone, myReftwo, myRefthree]
 
   let myDotone = React.createRef()
@@ -148,8 +146,8 @@ export default function Home({data, information}) {
                 let image = "https://drive.google.com/uc?export=view&id=" + id
                 let object = {image: image, title: title, comment: comment}
                 if(name.split(".")[1]) {
-                    console.log("adding : " + object)
-                    setImageArray(oldArray => [...imageArray,object])
+                    console.log("adding : " + JSON.parse(JSON.stringify(imageArray)))
+                    setImageArray(imageArray.push(object))
                 }
                 else {
                     console.log("File is not an image, skipping!")
@@ -166,11 +164,6 @@ export default function Home({data, information}) {
     showSlides(slideIndex)
     setText(information.text)
   })
-  useEffect(() => {
-  
-    console.log("image : " + imageArray)
-  
-  }, [imageArray])
   useEffect(() => {
     setInterval(() => {
       if (slideActivated) return
