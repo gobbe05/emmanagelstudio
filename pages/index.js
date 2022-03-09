@@ -18,7 +18,7 @@ export async function getStaticProps(context) {
   //Admin call
   
   try {
-           let AvailableBookings = await AvailableBooking.find({})
+            let AvailableBookings = await AvailableBooking.find({})
             let ConfirmedBookings = await ConfirmedBooking.find({})
             console.log("From, admin-get : Fetched Available bookings")
             dataRes = {AvailableBookings: JSON.parse(JSON.stringify(AvailableBookings)), ConfirmedBookings: JSON.parse(JSON.stringify(ConfirmedBookings))}
