@@ -149,7 +149,6 @@ export default function Home({data, information}) {
                 let object = {image: image, title: title, comment: comment}
                 if(name.split(".")[1]) {
                     setImageArray(oldArray => [...imageArray,object])
-                    console.log("Image array : " + imageArray)
                 }
                 else {
                     console.log("File is not an image, skipping!")
@@ -166,6 +165,11 @@ export default function Home({data, information}) {
     showSlides(slideIndex)
     setText(information.text)
   })
+  useEffect(() => {
+  
+    console.log("image : " + imageArray)
+  
+  }, [imageArray])
   useEffect(() => {
     setInterval(() => {
       if (slideActivated) return
