@@ -73,29 +73,9 @@ export async function getStaticProps(context) {
 }
 
 export default function Home({data, information}) {
-  async function CheckBookings() {
-    const response = await fetch('/api/checkbookings', {
-      method: "GET",
-      headers: {
-          'Content-Type': "application/json"
-      }
-    })
-    const result = await response.json()
-    setAvailableBookings(result.AvailableBookings)
-    setSortedBookings(AvailableBookings.sort((a,b) => {
-      try {
-        a = a.date.split('-').reverse().join('')
-        b = b.date.split('-').reverse().join('')
-        console.log(a > b ? 1 : a < b ? -1 : 0)
-        return a > b ? 1 : a < b ? -1 : 0
-      }
-      catch {
   
-      }
-    }))
-  }
-    const [AvailableBookings, setAvailableBookings] = useState([])
-    const [sortedBookings, setSortedBookings] = useState([])
+  const [AvailableBookings, setAvailableBookings] = useState([])
+  const [sortedBookings, setSortedBookings] = useState([])
 
   let slideIndex = 1
   let slideActivated = false
@@ -114,6 +94,22 @@ export default function Home({data, information}) {
   const [text, setText] = useState("")
   const [edit, setEdit] = useState(false)
   const [imageArray, setImageArray] = useState([])
+
+  const [bookingsLoaded, setBookingsLoaded] = useState(false)
+  const [imagesLoaded, setImagesLoaded] = useState(false)
+
+  async function CheckBookings() {
+    const response = await fetch('/api/checkbookings', {
+      method: "GET",
+      headers: {
+          'Content-Type': "application/json"
+      }
+    })
+    const result = await response.json()
+    setAvailableBookings(result.AvailableBookings)
+    setBookingsLoaded(true)
+    
+  }
   
   async function GetImages() {
     const response = await fetch('/api/getimages', {
@@ -121,17 +117,35 @@ export default function Home({data, information}) {
       headers: {
           'Content-Type': "application/json"
       }
-  })
+    })
     const result = await response.json()
     setImageArray(result)
   }
 
+
   useEffect(() => {
-    showSlides(slideIndex)
     GetImages()
     CheckBookings()
+
+      setSortedBookings(AvailableBookings.sort((a,b) => {
+        try {
+          a = a.date.split('-').reverse().join('')
+          b = b.date.split('-').reverse().join('')
+          console.log(a > b ? 1 : a < b ? -1 : 0)
+          return a > b ? 1 : a < b ? -1 : 0
+        }
+        catch(error) {
+          console.log
+        }
+        
+      }))
+  }, [bookingsLoaded, imagesLoaded])
+
+  useEffect(() => {
+    showSlides(slideIndex)
     setText(information.text)
   })
+
   useEffect(() => {
     setInterval(() => {
       if (slideActivated) return

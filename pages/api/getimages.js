@@ -1,5 +1,4 @@
 import dbConnect from "../../utils/dbConnect"
-import Images from '../../models/Images'
 require('dotenv').config()
 
 const {google} = require("googleapis")
