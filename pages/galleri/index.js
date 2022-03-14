@@ -1,7 +1,7 @@
 import styles from '../../components/galleri.module.css'
 import {useCookies} from 'react-cookie'
 import { useState, useEffect } from 'react'
-
+import Image from 'next/image'
 
 
 

@@ -1,8 +1,12 @@
+const nextConfig = {
+  image: {
+      domains: ['https://example.com'],
+  },
+}
+
 module.exports = (phase, {defaultConfig}) => {
   return {
     ...defaultConfig,
-
-    
   webpack: (config) => {
     config.resolve = {
       ...config.resolve,

@@ -80,6 +80,9 @@
     max-height: 50vh;
     max-width: 100vw;
 }
+.galleryCTR img {
+    position: relative;
+}
 .sliderCTR {
     overflow: hidden;
     position: relative;

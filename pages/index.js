@@ -171,13 +171,13 @@ export default function Home({data, information, availablebookings}) {
     <div className={styles.container}>
       <div className={styles.galleryCTR}>
         <div>
-          <img src="/nagelbilder/1.jpg">
+          <img src="/nagelbilder/1.jpg"></img>
         </div>
         <div>
-          <img src="/nagelbilder/2.jpg">
+          <img src="/nagelbilder/2.jpg"></img>
         </div>
         <div>
-          <img src="/nagelbilder/3.jpg">
+          <img src="/nagelbilder/3.jpg"></img>
         </div>
       </div>
       <div className={styles.sliderCTR} >
@@ -194,7 +194,7 @@ export default function Home({data, information, availablebookings}) {
         }
 
         <div ref={myRefthree} className={`${styles.mySlides} ${styles.fade} `}>
-          <img src="/nagelbilder/2.jpg">
+          <img src="/nagelbilder/2.jpg"></img>
         </div>
 
         <a className={styles.prev} onClick={() => {plusSlides(1)}}>&#10094;</a>
