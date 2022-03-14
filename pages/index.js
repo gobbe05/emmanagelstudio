@@ -173,12 +173,6 @@ export default function Home({data, information, availablebookings}) {
       <div className={styles.galleryCTR}>
         <div>
           <img src="/nagelbilder/1.jpg"></img>
-          <Image 
-           src="/nagelbilder/1.jpg"
-           alt="basketball"
-          height={426}
-          width={640}
-          />
         </div>
         <div>
           <img src="/nagelbilder/2.jpg"></img>
