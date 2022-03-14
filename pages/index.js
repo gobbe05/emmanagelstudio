@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {useCookies} from 'react-cookie';
 import styles from '../components/home.module.css';
 import Link from "next/link";
+import Image from 'next/image'
 import dbConnect from "../utils/dbConnect";
 import AvailableBooking from "../models/AvailableBooking";
 import ConfirmedBooking from "../models/ConfirmedBooking";
@@ -172,6 +173,12 @@ export default function Home({data, information, availablebookings}) {
       <div className={styles.galleryCTR}>
         <div>
           <img src="/nagelbilder/1.jpg"></img>
+          <Image 
+           src="/nagelbilder/1.jpg"
+           alt="basketball"
+          height={426}
+          width={640}
+          />
         </div>
         <div>
           <img src="/nagelbilder/2.jpg"></img>
