@@ -187,7 +187,7 @@ export default function Home({data, information, availablebookings}) {
             refId++;
             return (
               <div key={item.image} ref={refArr[refId-1] } className={`${styles.mySlides} ${styles.fade} `}>
-                <img src={item.image}>
+                <img src={item.image}></img>
               </div>
             )
           })
