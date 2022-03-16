@@ -288,9 +288,10 @@
     padding-top: 5%;
 }
 .viktiginfoCTR p {
+    font-size: 20px;
     margin-left: 10%;
     margin-right: 10%;
-    margin-top: 10%;
+    margin-top: 5%;
 }
 .footerCTR {
     width: 100vw;
@@ -327,8 +328,8 @@
     .sliderCTR {
         display: none;
     }
-    .hamburgerCTR {
-        display: none;
+    .sidemenuCTR {
+        width: 40vw;
     }
 }
 
