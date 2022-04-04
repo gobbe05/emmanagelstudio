@@ -1,11 +1,13 @@
-.adminCTR {
-    display: flex;
-}
 .bookingsCTR {
-    width: 50vw;
+    width: 100%;
 }
 .bookingsCTR div {
-    margin: 100px;
+    margin: 10px;
+}
+.bookingCTR {
+    background-color: #f0c1c1;
+    padding: 10px;
+    margin: 5px;
 }
 .availabletimesCTR {
     width: 50%;

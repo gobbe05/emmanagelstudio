@@ -133,12 +133,12 @@ export default function Admin({data}) {
                             return (
                                 <li key={date + time} className={styles.bookingItem}>
                                     <div className={styles.bookingCTR}>
-                                        <h1>{"Namn : " + element.name}</h1>
-                                        <h2>{"Typ : " + element.type}</h2>
-                                        <h3>{"Kontakt : " + element.contact}</h3>
-                                        <h4>{"Dag : " + date}</h4>
-                                        <h4>{"Time : " + time}</h4>
-                                        <h5>{"Tidpunkt vid bokning : " + element.dateofbooking}</h5>
+                                        <h4>{"Namn: " + element.name}</h4>
+                                        <h4>{"Typ: " + element.type}</h4>
+                                        <h4>{"Kontakt: " + element.contact}</h4>
+                                        <h4>{"Dag: " + date}</h4>
+                                        <h4>{"Time: " + time}</h4>
+                                        <h4>{"Tidpunkt vid bokning: " + element.dateofbooking}</h4>
                                     </div>
                                 </li>
                             )
@@ -151,7 +151,7 @@ export default function Admin({data}) {
                     <div className={styles.datetimeCTR}>
                         <div>
                             {/** Insert a component to choose data n' time */}
-                            <h1>Skapa ledig tid</h1>
+                            <h2>Skapa ledig tid</h2>
                             <input onChange={(e) => setNewBookingDate(e.target.value)} type="date"></input>
                             <input onChange={(e) => setNewBookingTime(e.target.value)} type="time"></input>
                             <input onClick={() => {NewBooking()}} type="submit"></input>

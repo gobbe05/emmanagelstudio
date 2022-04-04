@@ -98,13 +98,11 @@ export default function Home({data, information, availablebookings}) {
   
   async function GetImages() {
     const response = await fetch('/api/getimages', {
-      method: "GET",
-      headers: {
-          'Content-Type': "application/json"
-      }
+      method: "GET",                                  //Method
+      headers: {'Content-Type': "application/json"}   //Headers
     })
     const result = await response.json()
-    setImageArray(result)
+    setImageArray(result)     //Sets API response
   }
 
   useEffect(() => {
