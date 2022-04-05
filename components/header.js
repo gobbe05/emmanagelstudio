@@ -31,6 +31,7 @@ export default function Header() {
             <div className={styles.crosstwo}></div>
           </div>
           <div onClick={() => setOpenMenu(false)} className={styles.linksCTR}> 
+          <Link href="/"><h1 className={styles.pointer}>Hem</h1></Link>
             <Link href="/tider"><h1 className={styles.pointer}>Tider</h1></Link>
             <Link href="/prislista"><h1 className={styles.pointer}>Prislista</h1></Link>
             <Link href="/galleri"><h1 className={styles.pointer}>Galleri</h1></Link>

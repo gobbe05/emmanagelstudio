@@ -181,7 +181,7 @@ export default function Home({data, information, availablebookings}) {
       </div>
       <div className={styles.sliderCTR} >
         <div ref={myRefone} className={`${styles.mySlides} ${styles.fade} `}>
-          <img src="/nagelbilder/2.jpg" />
+          <img src="https://www.drive.google.com/uc?export=view&amp;id=1GZVuNxCrp01pvxsJ-hiUAZCSYAirC0pH" />
         </div>
         {
           imageArray.map((item) => {
