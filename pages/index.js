@@ -192,8 +192,7 @@ export default function Home({data, information, availablebookings}) {
             refId++;
             return (
               <div key={item.image} ref={refArr[refId] } className={`${styles.mySlides} ${styles.fade} `}>
-                <img src={item.image} loading="eager" />
-                <Image 
+              <Image 
                 src={item.image}
                 alt="DOnt know"
                 layout='fill'
