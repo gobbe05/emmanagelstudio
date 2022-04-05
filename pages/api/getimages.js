@@ -45,7 +45,7 @@ export default async (req,res) => {
                 comment = file.name.split("?")[1].split(".")[0]   //Comment
             }
             let image = "https://www.drive.google.com/uc?export=view&id=" + id  //Image link
-            let object = {image: image, title: title, comment: comment}     //Create Object
+            let object = {image: image, title: title, comment: comment, id: id}     //Create Object
             if(name.split(".")[1]) {      //Checks if file is an image
                 imageArray.push(object)   //Pushes object to image array
             }

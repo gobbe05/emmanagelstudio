@@ -1,7 +1,5 @@
 module.exports = {
   images: {
-    loader: "imgix",
-    path: "drive.google.com"
-    
+    domains: ['www.drive.google.com'],
   },
 }

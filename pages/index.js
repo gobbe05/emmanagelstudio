@@ -181,22 +181,14 @@ export default function Home({data, information, availablebookings}) {
       </div>
       <div className={styles.sliderCTR} >
         <div ref={myRefone} className={`${styles.mySlides} ${styles.fade} `}>
-          <Image 
-          src="https://www.drive.google.com/uc?export=view&amp;id=1GZVuNxCrp01pvxsJ-hiUAZCSYAirC0pH"
-          alt="DOnt know"
-          layout='fill'
-          />
+          <img src="/nagelbilder/2.jpg" />
         </div>
         {
           imageArray.map((item) => {
             refId++;
             return (
               <div key={item.image} ref={refArr[refId] } className={`${styles.mySlides} ${styles.fade} `}>
-              <Image 
-                src={item.image}
-                alt="DOnt know"
-                layout='fill'
-                />
+                <img src={item.image} />
               </div>
             )
           })
