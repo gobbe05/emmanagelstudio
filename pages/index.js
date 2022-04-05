@@ -180,21 +180,19 @@ export default function Home({data, information, availablebookings}) {
         </div>
       </div>
       <div className={styles.sliderCTR} >
-
+        <div ref={myRefone} className={`${styles.mySlides} ${styles.fade} `}>
+          <img src="/nagelbilder/2.jpg"></img>
+        </div>
         {
           imageArray.map((item) => {
             refId++;
             return (
-              <div key={item.image} ref={refArr[refId-1] } className={`${styles.mySlides} ${styles.fade} `}>
+              <div key={item.image} ref={refArr[refId] } className={`${styles.mySlides} ${styles.fade} `}>
                 <img src={item.image}></img>
               </div>
             )
           })
         }
-
-        <div ref={myRefthree} className={`${styles.mySlides} ${styles.fade} `}>
-          <img src="/nagelbilder/2.jpg"></img>
-        </div>
 
         <a className={styles.prev} onClick={() => {plusSlides(1)}}>&#10094;</a>
         <a className={styles.next} onClick={() => {plusSlides(-1)}}>&#10095;</a>

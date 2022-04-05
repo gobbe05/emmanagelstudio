@@ -6,57 +6,57 @@ const {google} = require("googleapis")
 dbConnect()
 
 export default async (req,res) => {
-    let imageArray = []
-    const scopes = [
-        "https://www.googleapis.com/auth/drive"
+    /* 
+        
+    Get images from google drive
+        
+    */
+  
+    let imageArray = []                           //Creates final response array
+    const scopes = [                              //Define scopes
+        "https://www.googleapis.com/auth/drive"   //Google Drive API
     ]
+    const credentials = require('../../Credentials.json')   //Fetches Google worker credentials
+    const auth = new google.auth.JWT(                       //Creates authentication profile
+      credentials.client_email, null,
+      credentials.private_key, scopes)
 
-    const credentials = require('../../Credentials.json')
-    const auth = new google.auth.JWT(
-        credentials.client_email, null,
-        credentials.private_key, scopes
-    )
-    const drive = google.drive({version: "v3", auth})
+    const drive = google.drive({version: "v3", auth})       //Creates drive connection. Using v3
+    
+    drive.files.list({                                                //Starts listing of items
+      fields: "files(name, webViewLink, exportLinks, contentHints)"   //What fields to import
+  },
 
-    drive.files.list({
-        fields: "files(name, webViewLink, exportLinks, contentHints)"
-    },
+  (err,response) => {                                                 //Callback (err, response)
+      if(err) throw err;                                              //Error check
+      console.log("Fetching items from Google Drive.....")            
+      const files = response.data.files;                              //Creates file variable
+      if(files.length) {                                              //If files is not 0
+          files.map((file) => {                                       //Map callback
 
-    (err,response) => {
-        if(err) throw err;
-        console.log("Fetching items from Google Drive.....")
-        const files = response.data.files;
-        if(files.length) {
-            files.map((file) => {
-                console.log(file)
-                let split = file.webViewLink.split("/")
-                let id = split[5]
-                let name = file.name
-                let title = ""
-                let comment = ""
-                if(name.split("?")[1]) {
-                    title = file.name.split("?")[0]
-                    comment = file.name.split("?")[1].split(".")[0]
-                }
-                let image = "https://drive.google.com/uc?export=view&id=" + id
-                let object = {image: image, title: title, comment: comment}
-                if(name.split(".")[1]) {
-                    imageArray.push(object)
-                    console.log(imageArray)
-                }
-                else {
-                    console.log("File is not an image, skipping!")
-                }
-
-            })
-            console.log("Done")
-            setTimeout(() => {
-                res.json(imageArray)
-            }, 1)
-        }
-        else {
-            console.log("No files found!")
-        }  
-    })
+            /* Starting file name manipulation to extract information */
+            let split = file.webViewLink.split("/")                //Gets id from webViewLink             
+            let id = split[5]                                     //Gets fifth part of link (ID)
+            let name = file.name                                  //Initialize name
+            let title = ""                                        //Initialize title
+            let comment = ""                                      //Initialize comment
+            if(name.split("?")[1]) {                              //Extracts text from file name
+                title = file.name.split("?")[0]                   //Title
+                comment = file.name.split("?")[1].split(".")[0]   //Comment
+            }
+            let image = "https://drive.google.com/uc?export=view&id=" + id  //Image link
+            let object = {image: image, title: title, comment: comment}     //Create Object
+            if(name.split(".")[1]) {      //Checks if file is an image
+                imageArray.push(object)   //Pushes object to image array
+            }
+          })
+          setTimeout(() => {
+            res.json(imageArray)
+        }, 1)
+      }
+      else {
+          console.log("No files found!")
+      }  
+  })
     
 }
