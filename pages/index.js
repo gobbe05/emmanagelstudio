@@ -181,7 +181,11 @@ export default function Home({data, information, availablebookings}) {
       </div>
       <div className={styles.sliderCTR} >
         <div ref={myRefone} className={`${styles.mySlides} ${styles.fade} `}>
-          <img src="/nagelbilder/2.jpg" />
+          <Image 
+          src="https://www.drive.google.com/uc?export=view&amp;id=1GZVuNxCrp01pvxsJ-hiUAZCSYAirC0pH"
+          alt="DOnt know"
+          layout='fill'
+          />
         </div>
         {
           imageArray.map((item) => {
@@ -189,6 +193,11 @@ export default function Home({data, information, availablebookings}) {
             return (
               <div key={item.image} ref={refArr[refId] } className={`${styles.mySlides} ${styles.fade} `}>
                 <img src={item.image} loading="eager" />
+                <Image 
+                src={item.image}
+                alt="DOnt know"
+                layout='fill'
+                />
               </div>
             )
           })
