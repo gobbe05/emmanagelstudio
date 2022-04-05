@@ -181,14 +181,14 @@ export default function Home({data, information, availablebookings}) {
       </div>
       <div className={styles.sliderCTR} >
         <div ref={myRefone} className={`${styles.mySlides} ${styles.fade} `}>
-          <img src="/nagelbilder/2.jpg"></img>
+          <img src="/nagelbilder/2.jpg" />
         </div>
         {
           imageArray.map((item) => {
             refId++;
             return (
               <div key={item.image} ref={refArr[refId] } className={`${styles.mySlides} ${styles.fade} `}>
-                <img src={item.image} loading="eager"></img>
+                <img src={item.image} loading="eager" />
               </div>
             )
           })
